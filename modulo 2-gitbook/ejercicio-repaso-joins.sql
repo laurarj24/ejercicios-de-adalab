@@ -1,15 +1,16 @@
 USE sakila;
 
--- EJERCICIOS JOINTS
+-- EJERCICIOS JOINS
 
 /* Ejercicio 1: Obtener los clientes y las películas que han alquilado.*/
 
-SELECT film_id, customer_id, rental_id FROM sakila.customer
-INNER JOIN sakila.rental
+SELECT title, first_name, last_name 
+FROM customer
+INNER JOIN rental
 USING (customer_id)
-INNER JOIN sakila.inventory
+INNER JOIN inventory
 USING (inventory_id)
-INNER JOIN sakila.film
+INNER JOIN film
 USING (film_id)
 ORDER BY customer_id;
 

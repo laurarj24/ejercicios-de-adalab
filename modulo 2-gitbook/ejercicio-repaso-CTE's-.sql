@@ -2,13 +2,12 @@
 
 /* Ejercicio 1: Encuentra el nombre de los actores que han actuado en más películas y la cantidad de películas en las que han actuado. */
 
-WITH actor_film AS (SELECT first_name,last_name, actor_id, film_id, title
-FROM actor INNER JOIN film_actor USING (actor_id)
-INNER JOIN film USING(film_id))
-SELECT first_name, last_name, COUNT(title) AS Film_Number
+WITH actor_film AS (SELECT first_name,last_name, actor_id, film_id
+FROM actor INNER JOIN film_actor USING (actor_id))
+SELECT first_name, last_name, COUNT(DISTINCT film_id) AS Film_Number
 FROM actor_film
 GROUP BY actor_id
-ORDER BY COUNT(title) DESC;
+ORDER BY COUNT(film_id) DESC;
 
 /* Ejercicio 2: Encuentra las categorías de películas con la mayor cantidad de películas y la cantidad de películas en cada categoría. */
 

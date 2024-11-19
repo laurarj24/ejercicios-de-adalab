@@ -33,6 +33,15 @@ FROM film
 WHERE title
 LIKE '%The%';
 
+-- Otra forma, si queremos buscar que tenga la palabra, no vale que contenga solo the en la estructura de la palabra
+
+SELECT film_id, title
+FROM film
+WHERE title
+REGEXP '\b[Tt]he\b';
+
+
+
 /* Ejercicio 5: Encuentra todas las películas cuyo título comienza con la letra "S."*/
 
 SELECT film_id, title

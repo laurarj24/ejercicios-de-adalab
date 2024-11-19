@@ -7,17 +7,18 @@ se alquilara por primera vez. Ordena los resultados alfabéticamente por apellid
 SELECT  first_name, last_name
 FROM actor
 WHERE actor_id IN (
-	SELECT actor_id FROM rental 
+	SELECT actor_id 
+    FROM rental 
     INNER JOIN inventory
 	USING(inventory_id)
 	INNER JOIN film_actor
 	USING(film_id)
 	INNER JOIN film
-    WHERE rental_date >= ALL (
-		SELECT rental_date
-        FROM rental
-        WHERE title = 'Academy Dinosaur'));
-        
+    WHERE rental_date > 
+		(SELECT MIN(rental_date) 
+		FROM rental 
+        WHERE title = 'Academy Dinosaur'))
+	ORDER BY last_name;
 
 
 /* Ejercicio 2: Encuentra el título de las películas que han sido alquiladas por el cliente con el nombre "MARY SMITH" y que aún no se han devuelto. 
